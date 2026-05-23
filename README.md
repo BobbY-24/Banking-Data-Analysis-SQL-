@@ -1,104 +1,48 @@
-🏦 Customer Churn Analysis with SQL
-📌 Project Overview
-This project analyzes customer churn data from a bank to uncover insights into customer behavior, risk factors, and retention opportunities. Using SQL queries, the project explores demographic, financial, and behavioral attributes of customers to identify patterns that lead to churn.
-The dataset used (bank_churn) includes information such as customer demographics, credit score, account balance, tenure, number of products, and churn status.
+# Customer Churn Analysis with SQL
 
-🎯 Objectives
-Understand the distribution of churn across customer groups
+## Overview
+This project analyzes a bank customer churn dataset using SQL. It focuses on churn counts, churn rate by customer group, and aggregate comparisons across demographic and account features. The project complements the Python-based bank churn prediction repository by showing database querying and analytical SQL skills.
 
+## Motivation
+SQL remains a core skill for data science and analytics work. This repo demonstrates how to translate a tabular ML dataset into business-facing questions about churn, customer segments, and retention risk.
 
-Analyze the effect of demographic factors (age, gender, geography) on churn
+## Dataset
+- **Source:** Kaggle Bank Customer Churn dataset.
+- **File:** `data/Churn_Modelling.csv`
+- **SQL file:** `sql/schema.sql`
+- **Target variable:** `Exited`, where `1` indicates churn and `0` indicates retained.
+- **Important features:** age, geography, gender, balance, credit score, active-member status, credit-card status, and number of products.
+- **Dataset size:** TODO: add dataset size after loading into SQL.
 
+## Methods
+- Count total customers and churn distribution.
+- Compute churn rates by age group.
+- Compare churn by gender, geography, active membership, credit-card status, and account variables.
+- Use aggregation queries to summarize customer behavior.
 
-Examine financial indicators (balance, credit score, salary) in relation to churn
+## Results
+TODO: add metric after rerunning SQL queries.
 
+## Key Insights
+- SQL can quickly surface churn patterns by customer segment.
+- The SQL analysis is a useful companion to the machine learning churn model.
+- Further work should connect query outputs to visual summaries and model features.
 
-Explore product/service usage and its correlation with customer retention
+## Limitations
+- The repository currently contains query examples, not a fully automated database setup.
+- Query results are not saved in `results/` yet.
+- The analysis is descriptive and does not prove causal churn drivers.
 
+## Future Improvements
+- Add database setup instructions for SQLite or PostgreSQL.
+- Save query outputs as CSV files in `results/`.
+- Add a short data dictionary.
+- Link insights to the Python churn prediction repo.
 
-Provide actionable insights for reducing churn
+## How to Run
+```bash
+git clone https://github.com/BobbY-24/Banking-Data-Analysis-SQL-.git
+cd Banking-Data-Analysis-SQL-
+```
 
-
-
-🛠️ Tools & Technologies
-MySQL – Data storage and analysis through SQL queries
-
-
-Kaggle Dataset – Bank customer churn dataset
-
-
-Python (optional) – For complementary data visualization (Pandas, Matplotlib, Seaborn)
-
-
-
-📂 Project Structure
-├── data/
-│   └── bank_churn.csv        # Original dataset from Kaggle
-├── sql/
-│   ├── create_database.sql   # Script to create `bank_data` database
-│   ├── create_table.sql      # Script to create `bank_churn` table
-│   ├── load_data.sql         # Script to import dataset into MySQL
-│   ├── analysis_queries.sql  # SQL queries for churn analysis
-├── README.md                 # Project documentation
-
-
-🔍 Example Queries
-Customer churn rate:
-
- SELECT 
-    (SUM(CASE WHEN Exited = 1 THEN 1 ELSE 0 END) / COUNT(*)) * 100 AS churn_rate
-FROM bank_churn;
-
-
-Churn by geography:
-
- SELECT Geography, 
-       COUNT(*) AS total_customers,
-       SUM(CASE WHEN Exited = 1 THEN 1 ELSE 0 END) AS churned_customers
-FROM bank_churn
-GROUP BY Geography;
-
-
-Effect of number of products:
-
- SELECT NumOfProducts, 
-       COUNT(*) AS total_customers,
-       SUM(CASE WHEN Exited = 1 THEN 1 ELSE 0 END) AS churned_customers
-FROM bank_churn
-GROUP BY NumOfProducts;
-
-
-
-📊 Insights (Expected)
-Certain geographies may have higher churn rates
-
-
-Higher credit scores often correlate with lower churn
-
-
-Customers with multiple products tend to be more loyal
-
-
-Age and tenure are significant churn factors
-
-
-
-🚀 Next Steps
-Integrate Python data visualization for richer insights
-
-
-Build a machine learning churn prediction model
-
-
-Create an interactive dashboard (Tableau/Power BI/Streamlit)
-
-
-
-🙌 Acknowledgments
-Dataset: Kaggle – Bank Customer Churn Dataset
-
-
-Tools: MySQL, Python
-
-
-
+Load `data/Churn_Modelling.csv` into a table named `bank_churn`, then run the queries in `sql/schema.sql`.
